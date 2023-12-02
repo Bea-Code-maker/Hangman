@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hangman</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="game">
+    <div class="word-to-guess"></div>
+    <div class="lives">Lives left: <span id="lives">7</span></div>
+    <div class="guess">
+      <input type="text" id="guessInput" maxlength="1">
+      <button onclick="checkGuess()">Guess</button>
+    </div>
+    <div class="message" id="message"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
