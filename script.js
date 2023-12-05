@@ -5,13 +5,17 @@ const words = ["javascript", "developer", "programming", "html", "css", "website
 function chooseWord() {
   return words[Math.floor(Math.random() * words.length)];
 }
-
 let wordToGuess = chooseWord();
 let guessedWord = Array(wordToGuess.length).fill('_');
 let lives = 7;
 
-// Display initial guessed word
-document.querySelector('.word-to-guess').textContent = guessedWord.join(' ');
+// Function to display the guessed word
+function displayWord() {
+  document.querySelector('.word-to-guess').textContent = guessedWord.join(' ');
+}
+
+// Call the function to display the initial guessed word
+displayWord();
 
 // Check the guessed letter
 function checkGuess() {
@@ -24,19 +28,19 @@ function checkGuess() {
   }
 
   if (wordToGuess.includes(guessedLetter)) {
-    for (let i = 0; i < wordToGuess.length; i++) {
+    for (let i = 0; i < wordToGuess.length; ++i) {
       if (wordToGuess[i] === guessedLetter) {
         guessedWord[i] = guessedLetter;
       }
     }
-    document.querySelector('.word-to-guess').textContent = guessedWord.join(' ');
+    displayWord();
 
     if (!guessedWord.includes('_')) {
       document.getElementById('message').textContent = 'Congratulations, you guessed the word!';
       disableInput();
     }
   } else {
-    lives--;
+    --lives;
     document.getElementById('lives').textContent = lives;
     if (lives === 0) {
       document.getElementById('message').textContent = `Game over! The word was "${wordToGuess}".`;
@@ -46,8 +50,9 @@ function checkGuess() {
   guessInput.value = '';
 }
 
-// Disable input after game ends
+// Function to disable input after game ends
 function disableInput() {
   document.getElementById('guessInput').disabled = true;
   document.querySelector('button').disabled = true;
 }
+
